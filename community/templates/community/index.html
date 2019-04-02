@@ -2,9 +2,15 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>$Title$</title>
+    <title>Title</title>
 </head>
 <body>
-$END$
+    <h1>게시판 메인화면</h1>
+    <ul>
+        <li><a href="{% url 'post_list' genre='all' %}">전체 게시글</a></li>
+        <li><a href="{% url 'post_list' genre='Free' %}">자유 게시글</a></li>
+        <li><a href="{% url 'post_list' genre='Subject' %}">학과별 게시글</a></li>
+        <li><a href="{% url 'post_list' genre='Market' %}">중고장터 게시글</a></li>
+    </ul>
 </body>
 </html>

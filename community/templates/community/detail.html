@@ -2,9 +2,24 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>$Title$</title>
+    <title>Title</title>
 </head>
 <body>
-$END$
+
+<div>
+<h1>제목: {{ object.title }}</h1>
+<h3>장르: {{ object.genre }}</h3>
+<strong>사용자: {{ object.author }}</strong>
+<p>내용: {{ object.text }}</p>
+</div>
+<form action="" method="post">
+    {{ form.as_p }}
+    {% csrf_token %}
+    <input type="submit" value="등록">
+</form>
+<div>
+<a href="{% url 'post_update' pk=post.id %}"><button>수정</button></a>
+<a href="{% url 'post_delete' pk=post.id %}"><button>제거</button></a>
+</div>
 </body>
 </html>

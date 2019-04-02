@@ -5,12 +5,18 @@
     <title>Title</title>
 </head>
 <body>
+<ul>
     {% for post in posts %}
-        {{ post.author.username }}
+    <li>
+        {{ post.author.username }} ||
         <a href="{% url 'post_detail' pk=post.id %}">
             {{ post.title}}
         </a>
+        || {{ post.genre }} ||
         {{ post.create_dt }}
+    </li>
     {% endfor %}
+    </ul>
+<a href="{% url 'post_create' %}"><button>글쓰기</button></a>
 </body>
 </html>
