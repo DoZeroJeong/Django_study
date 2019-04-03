@@ -1,10 +1,11 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, reverse
 from .models import Post, Comment
-from django.views.generic import CreateView, DeleteView, UpdateView, DetailView
+from django.views.generic import CreateView, DeleteView, UpdateView, DetailView, FormView
 from .forms import PostCreateForm, CommentForm
 
 
 # Create your views here.
+
 
 # 게시글 등록
 class PostCreateView(CreateView):
@@ -33,13 +34,13 @@ class PostUpdateVIew(UpdateView):
     model = Post
     fields = ['title', 'genre', 'text']
     template_name = 'community/update.html'
-    success_url = '/community/'
 
 
 # 게시글 상세보기
-class PostDetailView(DetailView):
+class PostDetailView(DetailView, FormView):
     model = Post
     template_name = 'community/detail.html'
+    form_class = CommentForm
 
 
 # 게시글 리스트

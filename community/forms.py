@@ -26,7 +26,10 @@ class PostCreateForm(forms.ModelForm):
 class CommentForm(forms.ModelForm):
     class Meta:
         model = Comment
-        fields = ['comment_text']
+        fields = ['post_id', 'comment_text']
         labels = {
             'comment_text': _('댓글'),
+        }
+        widgets = {
+            'post_id': forms.HiddenInput()
         }
