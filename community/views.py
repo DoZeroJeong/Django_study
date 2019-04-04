@@ -46,10 +46,9 @@ def post_detail(request, pk):
             return redirect('post-detail', pk=pk)
         item = get_object_or_404(Post, pk=pk)
         form = CommentForm(instance=item)
-        return render(request, 'community/detail.html', {'item': item, 'form': form})
-    item = get_object_or_404(Post, pk=pk)
-    comments = Comment.objects.filter(post_id=item).all()
-    return render(request, 'community/detail.html', {'comments': comments, 'item': item})
+        comments = Comment.objects.filter(post_id=item).all()
+        return render(request, 'community/detail.html', {'form': form, 'item': item, 'comments': comments})
+    return redirect('post-detail', pk)
 
 
 # 게시글 리스트
