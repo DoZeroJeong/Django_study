@@ -1,11 +1,10 @@
-from django.shortcuts import render, redirect, reverse
+from django.shortcuts import render, redirect, reverse, get_object_or_404
 from .models import Post, Comment
-from django.views.generic import CreateView, DeleteView, UpdateView, DetailView, FormView
+from django.views.generic import CreateView, DeleteView, UpdateView, DetailView, ListView, FormView
 from .forms import PostCreateForm, CommentForm
 
 
 # Create your views here.
-
 
 # 게시글 등록
 class PostCreateView(CreateView):
@@ -17,7 +16,7 @@ class PostCreateView(CreateView):
         form.instance.author_id = self.request.user.id
         if form.is_valid():
             form.save()
-            return redirect('/community/')
+            return super(PostCreateView, self).form_valid(form)
         else:
             return self.render_to_response({'form': form})
 
@@ -37,19 +36,32 @@ class PostUpdateVIew(UpdateView):
 
 
 # 게시글 상세보기
-class PostDetailView(DetailView, FormView):
-    model = Post
-    template_name = 'community/detail.html'
-    form_class = CommentForm
+
+def post_detail(request, pk):
+    if pk is not None:
+        if request.method == 'POST':
+            form = CommentForm(request.POST)
+            if form.is_valid():
+                form.save()
+            return redirect('post-detail', pk=pk)
+        item = get_object_or_404(Post, pk=pk)
+        form = CommentForm(instance=item)
+        return render(request, 'community/detail.html', {'item': item, 'form': form})
+    item = get_object_or_404(Post, pk=pk)
+    comments = Comment.objects.filter(post_id=item).all()
+    return render(request, 'community/detail.html', {'comments': comments, 'item': item})
 
 
 # 게시글 리스트
-def post_list(request, genre):
-    if genre == 'all':
-        posts = Post.objects.all()
-    else:
-        posts = Post.objects.filter(genre=genre)
-    return render(request, 'community/list.html', {'posts': posts})
+class PostListView(ListView):
+    model = Post
+    template_name = 'community/list.html'
+
+    def get_queryset(self):
+        if self.kwargs['genre'] == "all":
+            return Post.objects.all()
+        else:
+            return Post.objects.filter(genre=self.kwargs['genre'])
 
 
 # community 메인화면

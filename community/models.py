@@ -1,6 +1,8 @@
 from django.db import models
 from django.contrib.auth.models import User
 from django.urls import reverse
+
+
 # Create your models here.
 
 
@@ -24,5 +26,5 @@ class Comment(models.Model):
     comment_text = models.TextField()
     create_dt = models.DateField(auto_now_add=True)
 
-    def get_absolute_url(self):
-        return reverse('post-detail', kwargs={'pk': self.post_id})
+    def __str__(self):
+        return self.comment_text

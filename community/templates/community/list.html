@@ -5,8 +5,9 @@
     <title>Title</title>
 </head>
 <body>
+{{ object.genre }}
 <ul>
-    {% for post in posts %}
+    {% for post in object_list %}
     <li>
         {{ post.author.username }} ||
         <a href="{% url 'post-detail' pk=post.id %}">

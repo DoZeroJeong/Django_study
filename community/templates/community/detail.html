@@ -7,19 +7,27 @@
 <body>
 
 <div>
-<h1>제목: {{ object.title }}</h1>
-<h3>장르: {{ object.genre }}</h3>
-<strong>사용자: {{ object.author }}</strong>
-<p>내용: {{ object.text }}</p>
+<h1>제목: {{ item.title }}</h1>
+<h3>장르: {{ item.genre }}</h3>
+<strong>사용자: {{ item.author }}</strong>
+<p>내용: {{ item.text }}</p>
 </div>
-<form action="" method="post">
+<form action="{% url 'post-detail' pk=item.id %}" method="post">
     {{ form.as_p }}
     {% csrf_token %}
     <input type="submit" value="등록">
 </form>
+
 <div>
-<a href="{% url 'post-update' pk=post.id %}"><button>수정</button></a>
-<a href="{% url 'post-delete' pk=post.id %}"><button>제거</button></a>
+    {% for comment in comments %}
+        {{ comments.comment_text }}
+    {% endfor %}
 </div>
+
+<div>
+<a href="{% url 'post-update' pk=item.id %}"><button>수정</button></a>
+<a href="{% url 'post-delete' pk=item.id %}"><button>제거</button></a>
+</div>
+
 </body>
 </html>
