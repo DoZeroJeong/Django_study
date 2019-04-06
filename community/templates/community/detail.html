@@ -5,7 +5,7 @@
     <title>Title</title>
 </head>
 <body>
-
+<a href="{% url 'post-index' %}">메인화면</a>
 <div>
 <h1>제목: {{ item.title }}</h1>
 <h3>장르: {{ item.genre }}</h3>
@@ -17,10 +17,10 @@
     {% csrf_token %}
     <input type="submit" value="등록">
 </form>
-
+<br>
 <div>
     {% for comment in comments %}
-        {{ comments.comment_text }}
+    <p>{{ comment.comment_text }}</p>
     {% endfor %}
 </div>
 

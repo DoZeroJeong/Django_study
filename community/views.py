@@ -45,22 +45,19 @@ def post_detail(request, pk):
                 form.save()
             return redirect('post-detail', pk=pk)
         item = get_object_or_404(Post, pk=pk)
-        form = CommentForm(instance=item)
+        form = CommentForm(initial={'post_id': item})
         comments = Comment.objects.filter(post_id=item).all()
-        return render(request, 'community/detail.html', {'form': form, 'item': item, 'comments': comments})
+        return render(request, 'community/detail.html', {'item': item, 'form': form, 'comments': comments})
     return redirect('post-detail', pk)
 
 
 # 게시글 리스트
-class PostListView(ListView):
-    model = Post
-    template_name = 'community/list.html'
-
-    def get_queryset(self):
-        if self.kwargs['genre'] == "all":
-            return Post.objects.all()
-        else:
-            return Post.objects.filter(genre=self.kwargs['genre'])
+def post_list(request, genre):
+    if genre == "all":
+        posts = Post.objects.all()
+    else:
+        posts = Post.objects.filter(genre=genre)
+    return render(request, 'community/list.html', {'posts': posts})
 
 
 # community 메인화면

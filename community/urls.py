@@ -4,7 +4,7 @@ from .views import *
 
 urlpatterns = [
     path('', post_index, name='post-index'),
-    path('<str:genre>', PostListView.as_view(), name='post-list'),
+    path('list/<str:genre>/', post_list, name='post-list'),
     path('create/', PostCreateView.as_view(), name='post-create'),
     path('delete/<int:pk>/', PostDeleteView.as_view(), name='post-delete'),
     path('update/<int:pk>/', PostUpdateVIew.as_view(), name='post-update'),
