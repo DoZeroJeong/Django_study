@@ -36,7 +36,6 @@ class PostUpdateVIew(UpdateView):
 
 
 # 게시글 상세보기
-
 def post_detail(request, pk):
     if pk is not None:
         if request.method == 'POST':
@@ -63,4 +62,3 @@ def post_list(request, genre):
 # community 메인화면
 def post_index(request):
     return render(request, 'community/index.html')
-
