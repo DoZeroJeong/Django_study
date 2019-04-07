@@ -20,4 +20,5 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('community/', include('community.urls')),
     path('accounts/', include('accounts.urls')),
+    # path('dormitory/', include('dormitory.urls')),
 ]

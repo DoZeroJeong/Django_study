@@ -11,5 +11,8 @@
     {% csrf_token %}
     <input type="submit" value="Login">
 </form>
+<a href="{% url 'register' %}">
+    <button>Signup</button>
+</a>
 </body>
 </html>

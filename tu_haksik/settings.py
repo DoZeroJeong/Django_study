@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'community',
     'accounts',
+    'dormitory',
 ]
 
 MIDDLEWARE = [

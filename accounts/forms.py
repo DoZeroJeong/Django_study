@@ -1,5 +1,6 @@
 from django.contrib.auth.models import User
 from django import forms
+from django.utils.translation import ugettext_lazy as _
 
 
 class RegisterForm(forms.ModelForm):
@@ -8,7 +9,10 @@ class RegisterForm(forms.ModelForm):
 
     class Meta:
         model = User
-        fields = ['username', 'first_name', 'last_name', 'email']
+        fields = ['email', 'first_name', 'last_name', 'username']
+        labels = {
+            'username': _('닉네임'),
+        }
 
         def clean_password2(self):
             cd = self.clean_data
