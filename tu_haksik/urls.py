@@ -15,10 +15,16 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
+from rest_framework import  routers
+from dormitory import views
+
+
+
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('community/', include('community.urls')),
     path('accounts/', include('accounts.urls')),
-    # path('dormitory/', include('dormitory.urls')),
+    path('dormitory/', include('dormitory.urls')),
+    path('api-auth/', include('rest_framework.urls', namespace='rest_framework')),
 ]
