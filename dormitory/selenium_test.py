@@ -1,8 +1,4 @@
 from selenium import webdriver
-import time
-
-from selenium.common.exceptions import JavascriptException
-from selenium.webdriver.remote.webelement import WebElement
 
 
 def dormitory(uid, upwd, first, second, apply_text):
@@ -40,7 +36,5 @@ def dormitory(uid, upwd, first, second, apply_text):
     # 외박신청 버튼 클릭
     out_apply_submit = driver.find_element_by_name('btnSave')
     out_apply_submit.click()
-    alert = driver.switch_to.alert
-    alert.accept()
-    time.sleep(1)
+
     driver.quit()
