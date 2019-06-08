@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'accounts',
     'dormitory',
     'rest_framework',
+    'restaurant',
 ]
 
 MIDDLEWARE = [

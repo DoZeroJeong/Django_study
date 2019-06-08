@@ -15,10 +15,6 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
-from rest_framework import  routers
-from dormitory import views
-
-
 
 
 urlpatterns = [
@@ -27,4 +23,5 @@ urlpatterns = [
     path('accounts/', include('accounts.urls')),
     path('dormitory/', include('dormitory.urls')),
     path('api-auth/', include('rest_framework.urls', namespace='rest_framework')),
+    path('restaurant/', include('restaurant.urls')),
 ]

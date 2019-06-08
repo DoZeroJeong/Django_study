@@ -1,11 +1,7 @@
-from django.shortcuts import render
 from .models import Tu_Data
-from .forms import TuDataForm
 from .selenium_test import dormitory
-from rest_framework.decorators import api_view
-from rest_framework.response import Response
 from .serializers import DormitorySerializer
-from rest_framework import status, viewsets
+from rest_framework import viewsets
 
 # Create your views here.
 

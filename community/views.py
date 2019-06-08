@@ -1,7 +1,10 @@
-from django.shortcuts import render, redirect, reverse, get_object_or_404
+from django.shortcuts import render, redirect, get_object_or_404
 from .models import Post, Comment
-from django.views.generic import CreateView, DeleteView, UpdateView, DetailView, ListView, FormView
+from django.views.generic import CreateView, DeleteView, UpdateView
 from .forms import PostCreateForm, CommentForm
+
+from .serializers import PostSerializer, CommentSerializer
+from rest_framework import viewsets
 
 
 # Create your views here.
@@ -62,3 +65,8 @@ def post_list(request, genre):
 # community 메인화면
 def post_index(request):
     return render(request, 'community/index.html')
+
+
+class PostView(viewsets.ModelViewSet):
+    queryset = Post.objects.all()
+    serializer_class = PostSerializer
