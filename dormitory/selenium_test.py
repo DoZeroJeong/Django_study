@@ -1,10 +1,6 @@
 from selenium import webdriver
 import time
 
-from selenium.common.exceptions import JavascriptException
-from selenium.webdriver.remote.webelement import WebElement
-
-
 def dormitory(uid, upwd, first, second, apply_text):
     driver = webdriver.Chrome('C:/Users/Administrator/Desktop/chromedriver_win32/chromedriver')  # 웹브라우저 chrome
     driver.get("http://dormitory.tu.ac.kr/default/main/main.jsp")
@@ -30,10 +26,22 @@ def dormitory(uid, upwd, first, second, apply_text):
     # 외박신청 일자 선택
     apply = driver.find_element_by_name('txtSTAYOUT_REQ_FR_DT')
     apply.click()
-    first_day = driver.find_element_by_xpath('//*[text() = ' + first + ']')  # text 추출
-    first_day.click()
-    second_day = driver.find_element_by_xpath('//*[text() = ' + second + ']')  # text 추출
-    second_day.click()
+    if(first < second):
+        first_day = driver.find_element_by_xpath('//*[text() = ' + first + ']')  # text 추출
+        first_day.click()
+        apply = driver.find_element_by_xpath('//*[@id="txtSTAYOUT_REQ_TO_DT"]')
+        apply.click()
+        second_day = driver.find_element_by_xpath('//*[text() = ' + second + ']')  # text 추출
+        second_day.click()
+    else:
+        first_day = driver.find_element_by_xpath('//*[text() = ' + first + ']')  # text 추출
+        first_day.click()
+        apply = driver.find_element_by_xpath('//*[@id="txtSTAYOUT_REQ_TO_DT"]')
+        apply.click()
+        next_month = driver.find_element_by_xpath('//*[@id="ui-datepicker-div"]/div/a[2]/span')
+        next_month.click()
+        second_day = driver.find_element_by_xpath('//*[text() = ' + second + ']')  # text 추출
+        second_day.click()
     # 외박사유 입력
     text = driver.find_element_by_name('txtBIGO')
     text.send_keys(apply_text)
@@ -41,6 +49,8 @@ def dormitory(uid, upwd, first, second, apply_text):
     out_apply_submit = driver.find_element_by_name('btnSave')
     out_apply_submit.click()
     alert = driver.switch_to.alert
+    alert_txt = alert.text
     alert.accept()
     time.sleep(1)
     driver.quit()
+    return alert_txt
