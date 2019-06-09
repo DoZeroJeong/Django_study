@@ -7,4 +7,3 @@ from .serializers import RestaurantSerializer
 class RestaurantView(viewsets.ModelViewSet):
     queryset = Restaurant_Data.objects.all()
     serializer_class = RestaurantSerializer
-    http_method_names = 'get'

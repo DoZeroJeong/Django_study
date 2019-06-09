@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="Encoding" addBOMForNewFiles="with NO BOM">
+    <file url="file://$PROJECT_DIR$/restaurant/static/faculty_menu.json" charset="x-windows-949" />
     <file url="file://$PROJECT_DIR$/restaurant/static/faculty_menu.txt" charset="x-windows-949" />
+    <file url="file://$PROJECT_DIR$/restaurant/static/student_menu.json" charset="x-windows-949" />
     <file url="file://$PROJECT_DIR$/restaurant/static/student_menu.txt" charset="x-windows-949" />
   </component>
 </project>

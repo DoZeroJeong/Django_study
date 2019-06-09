@@ -1,12 +1,34 @@
 from django.urls import path
+from .views import PostView, CommentView
 
-from .views import *
+post_list = PostView.as_view({
+    'get': 'list',
+    'post': 'create'
+})
+
+post_detail = PostView.as_view({
+    'get': 'retrieve',
+    'put': 'update',
+    'patch': 'partial_update',
+    'delete': 'destroy',
+})
+
+comment_list = CommentView.as_view({
+    'get': 'list',
+    'post': 'create'
+})
+
+comment_detail = CommentView.as_view({
+    'get': 'retrieve',
+    'put': 'update',
+    'patch': 'partial_update',
+    'delete': 'destroy',
+})
 
 urlpatterns = [
-    path('', post_index, name='post-index'),
-    path('list/<str:genre>/', post_list, name='post-list'),
-    path('create/', PostCreateView.as_view(), name='post-create'),
-    path('delete/<int:pk>/', PostDeleteView.as_view(), name='post-delete'),
-    path('update/<int:pk>/', PostUpdateVIew.as_view(), name='post-update'),
-    path('detail/<int:pk>/', post_detail, name='post-detail'),
+    path('', post_list),
+    path(r'<int:pk>', post_detail),
+    path('comment/', comment_list),
+    path('comment/<int:pk>', comment_detail),
+    # path('like/', LikeView.as_view()),
 ]
