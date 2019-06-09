@@ -5,7 +5,6 @@ import threading
 import schedule
 
 today = date.today()
-print(time(18, 12))
 
 
 def restaurant():
@@ -46,6 +45,8 @@ def restaurant():
             f_f.write('\n')
             f_f.write(today.__str__())
             f_f.write('\n\n')
+
+        print(today)
 
 
 schedule.every().day.at("00:00").do(restaurant)
