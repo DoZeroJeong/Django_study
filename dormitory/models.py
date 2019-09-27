@@ -9,3 +9,6 @@ class Tu_Data(models.Model):
     first_day = models.CharField(max_length=10)
     second_day = models.CharField(max_length=10)
     apply_text = models.TextField()
+    message = models.TextField(blank=True)
+
+

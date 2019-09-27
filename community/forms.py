@@ -21,13 +21,14 @@ Options = [
 class PostCreateForm(forms.ModelForm):
     class Meta:
         model = Post
-        fields = ['title', 'genre', 'text']
+        fields = ['title', 'genre', 'file', 'text']
         widgets = {
             'genre': forms.Select(choices=Options)
         }
         labels = {
             'title': _('제목'),
             'genre': _('게시판'),
+            'file': _('파일'),
             'text': _('내용'),
         }
 

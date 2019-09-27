@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+{% load rest_framework %}
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -6,8 +7,8 @@
 </head>
 <body>
 <form action="" method="post">
-    {{ tu_form.as_p }}
     {% csrf_token %}
+    {% render_form serializer %}
     <input type="submit" value="Click">
 </form>
 </body>

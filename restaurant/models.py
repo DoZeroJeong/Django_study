@@ -4,5 +4,9 @@ from django.db import models
 
 
 class Restaurant_Data(models.Model):
-    student_menu = models.CharField(max_length=1024)
+    ddoock = models.CharField(max_length=1024)
+    il = models.CharField(max_length=1024)
+    rice = models.CharField(max_length=1024)
+    noodle = models.CharField(max_length=1024)
+    yang = models.CharField(max_length=1024)
     faculty_menu = models.CharField(max_length=1024)

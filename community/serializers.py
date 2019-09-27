@@ -43,19 +43,7 @@ class LikeSerializer(serializers.ModelSerializer):
 class PostSerializer(serializers.ModelSerializer):
     genre = serializers.ChoiceField(choices=Options)
     author = UserSerializer(read_only=True)
-    comment = CommentSerializer(many=True, read_only=True)
-    like = LikeSerializer(many=True, read_only=True)
 
     class Meta:
         model = Post
-        fields = (
-            'id',
-            'author',
-            'title',
-            'genre',
-            'text',
-            'create_dt',
-            'update_dt',
-            'comment',
-            'like',
-        )
+        fields = '__all__'

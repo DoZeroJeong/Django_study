@@ -2,7 +2,6 @@ from django.db import models
 from django.contrib.auth.models import User
 from django.urls import reverse
 
-
 # Create your models here.
 
 
@@ -10,6 +9,7 @@ class Post(models.Model):
     author = models.ForeignKey(User, on_delete=models.CASCADE, related_name='auth')
     title = models.CharField(max_length=200)
     genre = models.CharField(max_length=50)
+    file = models.ImageField(upload_to='media/%Y/%m/%d', default=None, null=True)
     text = models.TextField()
     create_dt = models.DateField(auto_now_add=True)
     update_dt = models.DateField(auto_now=True)

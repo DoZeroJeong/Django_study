@@ -1,20 +1,14 @@
-from django.shortcuts import render
-from .forms import RegisterForm
-# Create your views here.
+from rest_framework.response import Response
+from rest_framework.views import APIView
+from django.contrib.auth.models import User
+from .serializers import UserSerializer
+from rest_framework import generics
+
+class UserList(generics.ListAPIView):
+    queryset = User.objects.all()
+    serializer_class = UserSerializer
 
 
-def account_index(request):
-    return render(request, 'registration/index.html')
-
-
-def register(request):
-    if request.method == 'POST':
-        user_form = RegisterForm(request.POST)
-        if user_form.is_valid():
-            new_user = user_form.save(commit=False)
-            new_user.set_password(user_form.cleaned_data['password'])
-            new_user.save()
-            return render(request, 'registration/index.html', {'new_user': new_user})
-    else:
-        user_form = RegisterForm()
-    return render(request, 'registration/register.html', {'user_form': user_form})
+class UserDetail(generics.RetrieveAPIView):
+    queryset = User.objects.filter()
+    serializer_class = UserSerializer

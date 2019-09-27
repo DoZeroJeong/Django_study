@@ -1,24 +1,25 @@
 from .models import Post, Comment, Like
 from .serializers import PostSerializer, CommentSerializer, LikeSerializer
-from rest_framework import viewsets
+from rest_framework.views import APIView
+from rest_framework.generics import GenericAPIView
+from rest_framework.response import Response
+from rest_framework.renderers import TemplateHTMLRenderer
 
 
-class PostView(viewsets.ModelViewSet):
-    queryset = Post.objects.all()
+class PostView(GenericAPIView):
+
     serializer_class = PostSerializer
+    queryset = Post.objects.all()
 
-    def perform_create(self, serializer):
-        serializer.save(author=self.request.user)
+    def get(self, request):
+        post = Post.objects.all()
+        serializer = PostSerializer(post, many=True)
+        return Response(serializer.data)
 
-
-class CommentView(viewsets.ModelViewSet):
-    queryset = Comment.objects.all()
-    serializer_class = CommentSerializer
-
-    def perform_create(self, serializer):
-        serializer.save(author=self.request.user)
-
-class LikeView(viewsets.ModelViewSet):
-    queryset = Like.objects.all()
-    serializer_class = LikeSerializer
-
+    def post(self, request):
+        serializer = PostSerializer(data=request.data)
+        if serializer.is_valid():
+            serializer.save(author=request.user)
+            return Response(data=serializer.data)
+        else:
+            return Response(data=serializer.errors)

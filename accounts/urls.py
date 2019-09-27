@@ -4,8 +4,6 @@ from .views import *
 
 
 urlpatterns = [
-    path('', account_index, name='account-index'),
-    path('login/', auth_view.LoginView.as_view(), name='login'),
-    path('logout/', auth_view.LogoutView.as_view(template_name='registration/logout.html'), name='logout'),
-    path('register/', register, name='register'),
+    path('', UserList.as_view(), name='account-list'),
+    path('<int:pk>', UserDetail.as_view(), name='account-detail'),
 ]

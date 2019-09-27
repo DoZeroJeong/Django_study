@@ -1,23 +1,21 @@
 <!DOCTYPE html>
+{% load rest_framework %}
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
 </head>
 <body>
-<a href="{% url 'post-index'%}">메인화면</a>
 <ul>
     {% for post in posts %}
     <li>
         {{ post.author.username }} ||
-        <a href="{% url 'post-detail' pk=post.id %}">
             {{ post.title}}
-        </a>
         || {{ post.genre }} ||
         {{ post.create_dt }}
     </li>
+
     {% endfor %}
     </ul>
-<a href="{% url 'post-create' %}"><button>글쓰기</button></a>
 </body>
 </html>

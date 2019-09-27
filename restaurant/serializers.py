@@ -6,7 +6,11 @@ class RestaurantSerializer(serializers.ModelSerializer):
     class Meta:
         model = Restaurant_Data
         fields = (
-            'student_menu',
+            'ddoock',
+            'il',
+            'rice',
+            'noodle',
+            'yang',
             'faculty_menu',
         )
 
