@@ -57,6 +57,7 @@ def restaurant():
             menu.remove('')
             for menus in menu:
                 faculty_menu.append(menus)
+
         return ddoock, il, rice, yang, noodle, faculty_menu
 
 

@@ -14,6 +14,7 @@ Options = [
 
 
 class UserSerializer(serializers.ModelSerializer):
+
     class Meta:
         model = User
         fields = (
@@ -22,6 +23,7 @@ class UserSerializer(serializers.ModelSerializer):
 
 
 class CommentSerializer(serializers.ModelSerializer):
+
     author = UserSerializer(read_only=True)
 
     class Meta:
@@ -33,17 +35,34 @@ class CommentSerializer(serializers.ModelSerializer):
 
 
 class LikeSerializer(serializers.ModelSerializer):
+
+    author = UserSerializer(read_only=True)
+
     class Meta:
         model = Like
         fields = (
-            'like_cnt',
+            'id',
+            'author',
         )
 
 
 class PostSerializer(serializers.ModelSerializer):
+
     genre = serializers.ChoiceField(choices=Options)
     author = UserSerializer(read_only=True)
+    comment = CommentSerializer(many=True, read_only=True)
+    like = LikeSerializer(many=True, read_only=True)
 
     class Meta:
         model = Post
-        fields = '__all__'
+        fields = (
+            'author',
+            'title',
+            'genre',
+            'file',
+            'text',
+            'create_dt',
+            'update_dt',
+            'comment',
+            'like',
+        )

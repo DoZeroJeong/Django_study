@@ -1,15 +1,12 @@
-<!DOCTYPE html>
-{% load rest_framework %}
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+{% extends 'base.html' %}
+
+{% block title %}동명대학교 외박신청{% endblock %}
+
+{% block content %}
+
 <form action="" method="post">
     {% csrf_token %}
-    {% render_form serializer %}
     <input type="submit" value="Click">
 </form>
-</body>
-</html>
+
+{% endblock %}

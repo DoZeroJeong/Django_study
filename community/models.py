@@ -31,6 +31,6 @@ class Comment(models.Model):
         return self.comment_text
 
 class Like(models.Model):
+
     post_id = models.ForeignKey(Post, on_delete=models.CASCADE, related_name='like')
     author = models.ForeignKey(User, on_delete=models.CASCADE)
-    like_cnt = models.IntegerField(default=0)
