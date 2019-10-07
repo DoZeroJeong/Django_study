@@ -1,21 +1,13 @@
 from .dormitory_apply import dormitory
 from .serializers import DormitorySerializer
 from rest_framework.response import Response
-from rest_framework.views import APIView
-from rest_framework.renderers import TemplateHTMLRenderer
 from rest_framework.generics import GenericAPIView
 from rest_framework import status
 
 
 class OutApply(GenericAPIView):
 
-    renderer_classes = [TemplateHTMLRenderer]
-    template_name = 'dormitory/apply.html'
     serializer_class = DormitorySerializer
-
-    def get(self, request):
-        serializer = DormitorySerializer()
-        return Response(serializer.data)
 
     def post(self, request):
         serializer = DormitorySerializer(data=request.data)
