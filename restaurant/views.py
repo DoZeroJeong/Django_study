@@ -1,5 +1,5 @@
 from rest_framework.views import APIView
-from .Haksik import restaurant
+from .Haksik import restaurant, dor_restaurant
 from rest_framework.response import Response
 
 
@@ -8,18 +8,15 @@ from rest_framework.response import Response
 class RestaurantView(APIView):
 
     def get(self, request):
-        if '식단' in restaurant():
-            message = restaurant()
-            return Response({
-                'message': message,
-            })
-        else:
-            ddoock, il, rice, yang, noodle, faculty_menu = restaurant()
-            return Response({
-                "뚝배기": ddoock,
-                "일품": il,
-                "덮밥": rice,
-                "양식": yang,
-                "면류": noodle,
-                "교직원": faculty_menu,
-            })
+        ddoock, il, rice, yang, noodle, faculty_menu = restaurant()
+        breakfast, dinner = dor_restaurant()
+        return Response({
+            "뚝배기": ddoock,
+            "일품": il,
+            "덮밥": rice,
+            "양식": yang,
+            "면류": noodle,
+            "교직원식단": faculty_menu,
+            "조식": breakfast,
+            "석식": dinner,
+        })
