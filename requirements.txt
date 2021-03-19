@@ -8,7 +8,7 @@ Django==2.2.6
 django-allauth==0.40.0
 django-rest-auth==0.9.5
 django-rest-swagger==2.2.0
-djangorestframework==3.9.4
+djangorestframework==3.11.2
 djangorestframework-jwt==1.11.0
 EasyProcess==0.2.7
 idna==2.8
